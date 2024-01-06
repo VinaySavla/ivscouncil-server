@@ -9,11 +9,11 @@ const e = require("express");
 
 //For SMTP Mail Sending
 let transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
+  host: "smtp.gmail.com",
+  port: "587",
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: "gamechanger00029@gmail.com",
+    pass: "lwatqpjwhbpggmwr",
   },
 });
 
@@ -22,14 +22,14 @@ router.post("/donate", async (req, res) => {
   const bodyData = req.body;
 
   message1 = {
-    from: "ivseducouncil@gmail.com",
-    to: "ivseducouncil@gmail.com",
+    from: "savlavinay022@gmail.com",
+    to: "savlavinay022@gmail.com",
     subject: `Thank you ${bodyData.Name} for you donation to IVS Education Council`,
     html: `<p>Dear ${bodyData.Name}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.DonationAmount}. you have also opted for Recurring donation on ${bodyData.DonationFrequency} for ${bodyData.DonationDuration}. We will send you a reminder a day before your next donation date.</p>`,
   };
   message2 = {
-    from: "ivseducouncil@gmail.com",
-    to: "ivseducouncil@gmail.com",
+    from: "savlavinay022@gmail.com",
+    to: "savlavinay022@gmail.com",
     subject: `Thank you ${bodyData.Name} for you donation to IVS Education Council`,
     html: `<p>Dear ${bodyData.Name}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.DonationAmount}.</p>`,
   };
