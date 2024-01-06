@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "u353810860_ivscouncil",
+    "password": "IvsCouncil@981",
+    "database": "u353810860_ivscouncil",
+    "host": "srv1132.hstgr.io",
+    "dialect": "mysql",
+    "logging": false,
+    "timezone": "+05:30"
+  },
+  "test": {
+    "username": "u353810860_ivscouncil",
+    "password": "IvsCouncil@981",
+    "database": "u353810860_ivscouncil",
+    "host": "srv1132.hstgr.io",
+    "dialect": "mysql",
+    "timezone": "+05:30"
+  },
+  "production": {
+    "username": "u353810860_ivscouncil",
+    "password": "IvsCouncil@981",
+    "database": "u353810860_ivscouncil",
+    "host": "srv1132.hstgr.io",
+    "dialect": "mysql",
+    "timezone": "+05:30"
+  }
+}
