@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
+var http = require('http').Server(app);
 const cors = require("cors");
 const fs = require('fs');
+require("dotenv").config();
 // const session = require("express-session");
 // const store = new session.MemoryStore();
 const PORT = 4000;
@@ -35,6 +37,9 @@ const db = require("./models");
 // Routers
 const Routes = require("./routes/routes");
 app.use("/api", Routes);
+
+const paymentRoute = require('./routes/paypalPaymentRoute');
+app.use("/paypal", paymentRoute);
 
 
 db.sequelize.sync().then(() => {

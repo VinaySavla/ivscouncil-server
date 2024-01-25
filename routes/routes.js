@@ -4,16 +4,15 @@ const { Op } = require("sequelize");
 const { Donation } = require("../models");
 // const { Users } = require("../models");
 const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
-const e = require("express");
-
+// const dotenv = require("dotenv");
+const { PAYPAL_MODE, PAYPAL_CLIENT_KEY, PAYPAL_SECRET_KEY, BASE_URL, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD } = process.env;
 //For SMTP Mail Sending
 let transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: "587",
+  host: SMTP_HOST,
+  port: SMTP_PORT,
   auth: {
-    user: "gamechanger00029@gmail.com",
-    pass: "lwatqpjwhbpggmwr",
+    user: SMTP_USER,
+    pass: SMTP_PASSWORD,
   },
 });
 
@@ -24,14 +23,14 @@ router.post("/donate", async (req, res) => {
   message1 = {
     from: "savlavinay022@gmail.com",
     to: "savlavinay022@gmail.com",
-    subject: `Thank you ${bodyData.Name} for you donation to IVS Education Council`,
-    html: `<p>Dear ${bodyData.Name}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.DonationAmount}. you have also opted for Recurring donation on ${bodyData.DonationFrequency} for ${bodyData.DonationDuration}. We will send you a reminder a day before your next donation date.</p>`,
+    subject: `Thank you ${bodyData.FirstName} for you donation to IVS Education Council`,
+    html: `<p>Dear ${bodyData.FirstName}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.amount}. you have also opted for Recurring donation on ${bodyData.DonationFrequency} for ${bodyData.DonationDuration}. We will send you a reminder a day before your next donation date.</p>`,
   };
   message2 = {
     from: "savlavinay022@gmail.com",
     to: "savlavinay022@gmail.com",
-    subject: `Thank you ${bodyData.Name} for you donation to IVS Education Council`,
-    html: `<p>Dear ${bodyData.Name}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.DonationAmount}.</p>`,
+    subject: `Thank you ${bodyData.FirstName} for you donation to IVS Education Council`,
+    html: `<p>Dear ${bodyData.FirstName}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.amount}.</p>`,
   };
   if (bodyData.isRecurringDonation) {
     transporter.sendMail(message1, function (err, info) {

@@ -21,6 +21,7 @@
     "https": "^1.0.0",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.9.5",
+    "paypal-rest-sdk": "^1.8.1",
     "sequelize": "^6.6.5",
     "util": "^0.12.5",
     "webpack": "^5.88.2"
