@@ -133,7 +133,7 @@ const successPage = async (req, res) => {
 
 const cancelPage = async (req, res) => {
   try {
-    res.json(req);
+    res.send("Payment Unsuccesful");
   } catch (error) {
     console.log(error.message);
   }
