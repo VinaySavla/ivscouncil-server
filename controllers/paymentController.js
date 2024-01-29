@@ -116,7 +116,7 @@ const successPage = async (req, res) => {
             //   "Payment details saved successfully:",
             //   donateResponse.data
             // );
-            res.send(donateResponse);
+            res.json(donateResponse);
           } catch (apiError) {
             console.error("Error saving payment details:", apiError);
             res.status(500).send("Failed to save payment details");
@@ -133,7 +133,7 @@ const successPage = async (req, res) => {
 
 const cancelPage = async (req, res) => {
   try {
-    res.send("cancel");
+    res.json(req);
   } catch (error) {
     console.log(error.message);
   }
