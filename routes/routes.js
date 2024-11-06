@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
-const { Donation } = require("../models");
+const { Donation, Enquries } = require("../models");
 // const { Users } = require("../models");
 const nodemailer = require("nodemailer");
 
@@ -30,13 +30,13 @@ router.post("/donate", async (req, res) => {
   const bodyData = req.body;
 
   message1 = {
-    from: "savlavinay022@gmail.com",
+    from: SMTP_USER,
     to: "savlavinay022@gmail.com",
     subject: `Thank you ${bodyData.FirstName} for you donation to IVS Education Council`,
     html: `<p>Dear ${bodyData.FirstName}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.amount}. you have also opted for Recurring donation on ${bodyData.DonationFrequency} for ${bodyData.DonationDuration}. We will send you a reminder a day before your next donation date.</p>`,
   };
   message2 = {
-    from: "savlavinay022@gmail.com",
+    from: SMTP_USER,
     to: "savlavinay022@gmail.com",
     subject: `Thank you ${bodyData.FirstName} for you donation to IVS Education Council`,
     html: `<p>Dear ${bodyData.FirstName}, \nWe are greateful to you for your Donation to IVS Education Council of Amount ${bodyData.amount}.</p>`,
@@ -68,6 +68,64 @@ router.post("/donate", async (req, res) => {
   });
   res.json(createResponse);
 });
+
+router.post("/get-started", async (req, res) => {
+  const bodyData = req.body;
+  message = {
+    from: SMTP_USER,
+    to: SMTP_USER,
+    subject: `New Enquiry for IVS Solutions Get Started Page`,
+    html: `<div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+    <h2 style="color: #0056b3;">New User Enquiry Notification from Get Started Page</h2>
+    <p>Dear Admin,</p>
+    <p>${bodyData.FirstName} ${bodyData.LastName} has submitted the form on the Get Started page. Here are the details:</p>    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">User Details</h3>
+    <p><strong>First Name:</strong> ${bodyData.FirstName}</p>
+    <p><strong>Last Name:</strong> ${bodyData.LastName}</p>
+    <p><strong>Gender:</strong> ${bodyData.Gender}</p>
+    <p><strong>Admissions Need:</strong> ${bodyData.AdmissionsNeed}</p>
+    <p><strong>Form Completed By:</strong> ${bodyData.FormIsCompletedBy}</p>
+    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Parent Details</h3>
+    <p><strong>Parent's First Name:</strong> ${bodyData.parentsFirstName}</p>
+    <p><strong>Parent's Last Name:</strong> ${bodyData.parentsLastName}</p>
+    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Contact Information</h3>
+    <p><strong>Email:</strong> ${bodyData.Email}</p>
+    <p><strong>Phone Number:</strong> ${bodyData.PhoneNumber}</p>
+    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Location</h3>
+    <p><strong>State:</strong> ${bodyData.State}</p>
+    <p><strong>Country:</strong> ${bodyData.Country}</p>
+    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Academic Details</h3>
+    <p><strong>Age:</strong> ${bodyData.Age}</p>
+    <p><strong>Year of High School Graduation:</strong> ${bodyData.YearofHighSchoolGraduation}</p>
+    
+    <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Additional Comments</h3>
+    <p>${bodyData.Comments || "No additional comments provided."}</p>
+    
+    <p style="margin-top: 20px;">Best Regards,<br>IVS Education Council Team</p>
+    </div>`,
+  };
+  transporter.sendMail(message, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(info);
+    }
+  });
+  const createResponse = await Enquries.create(bodyData);
+  res.header({
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+  });
+  res.json(createResponse);
+}
+);
+
 
 
 //TODO Paytm
