@@ -95,6 +95,8 @@ router.post("/get-started", async (req, res) => {
     <p><strong>Phone Number:</strong> ${bodyData.PhoneNumber}</p>
     
     <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Location</h3>
+    <p><strong>Address:</strong> ${bodyData.Address}</p>
+    <p><strong>City:</strong> ${bodyData.City}</p>
     <p><strong>State:</strong> ${bodyData.State}</p>
     <p><strong>Country:</strong> ${bodyData.Country}</p>
     
