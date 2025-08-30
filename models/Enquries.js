@@ -15,23 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       },
       Gender:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       AdmissionsNeed:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       FormIsCompletedBy: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       parentsFirstName:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       parentsLastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       Email: {
         type: DataTypes.STRING,
@@ -43,15 +43,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       Address: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       City: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       State: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       Country: {
         type: DataTypes.STRING,
@@ -59,11 +59,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       Age: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       YearofHighSchoolGraduation: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       Comments: {
         type: DataTypes.STRING,
